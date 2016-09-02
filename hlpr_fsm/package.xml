@@ -1,0 +1,22 @@
+<package>
+  <name>hlpr_fsm</name>
+  <version>1.0.0</version>
+  <description>Metapackage for the ROS Packages related to state machines</description>
+  <author email="vchu@diligentdroids.com">Vivian Chu</author>
+  <maintainer email="vchu@diligentdroids.com">Vivian Chu</maintainer>
+  
+  <url type="website">https://github.com/HLP-R/hlpr_fsm/wiki</url>
+  <url type="bugtracker">https://github.com/HLP-R/hlpr_fsm/issues</url>
+  <url type="repository">https://github.com/HLP-R/hlpr_fsm</url>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>hlpr_state_machines</run_depend>
+  <run_depend>hlpr_basic_states</run_depend>
+  
+  <export>
+    <metapackage />
+  </export>
+</package>
+
