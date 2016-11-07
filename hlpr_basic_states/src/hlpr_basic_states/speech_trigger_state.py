@@ -52,8 +52,10 @@ class SpeechTriggerState(smach.State):
     INVALID_KEY = 'invalid'
     PREEMPT_KEY = 'preempted'
 
-    def __init__(self, outcomes=[], input_keys=[], output_keys=[], queue_size=1):
-
+    def __init__(self, outcomes=[], input_keys=[], output_keys=[], queue_size=1, forget_ud=False):
+        # Extra flag - forget_ud: will clear ud after the state is triggered
+        self._forget_ud = forget_ud 
+         
         # Get topic that we should be listening to for speech commands
         self._topic = rospy.get_param(SpeechListener.COMMAND_TOPIC_PARAM, None)
         if self._topic is None:
@@ -136,6 +138,10 @@ class SpeechTriggerState(smach.State):
         if self.preempt_requested(): 
             self.service_preempt() 
             return SpeechTriggerState.PREEMPT_KEY
+
+        if (self._forget_ud):
+            # Clear existing userdata
+            ud._ud._data = {}
 
         # Check if we have encoutered a transition state
         if self._transition_state is not None:
